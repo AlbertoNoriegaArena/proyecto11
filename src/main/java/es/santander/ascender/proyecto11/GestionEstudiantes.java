@@ -10,6 +10,18 @@ public class GestionEstudiantes implements IGestionEstudiantes {
      // Map => nombre como clave, calificacion como valor
     private Map<String, Integer> estudiantes = new HashMap<>();
 
+
+    //GETTERS Y SETTERS
+    public Map<String, Integer> getEstudiantes() {
+        return estudiantes;
+    }
+
+
+    public void setEstudiantes(Map<String, Integer> estudiantes) {
+        this.estudiantes = estudiantes;
+    }
+
+
     @Override
     public boolean agregarEstudiante(String nombre, int calificacion) {
         
@@ -31,8 +43,12 @@ public class GestionEstudiantes implements IGestionEstudiantes {
 
     @Override
     public Map<String, Integer> obtenerEstudiantesYCalificaciones() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerEstudiantesYCalificaciones'");
+        
+        // Devuelvo el mapa original
+        return this.getEstudiantes();
+
+        // Si se quisiera pasar una copia para que no modifique el mapa original
+        // return new HashMap<>(this.getEstudiantes());
     }
 
     @Override
@@ -56,8 +72,14 @@ public class GestionEstudiantes implements IGestionEstudiantes {
 
     @Override
     public void agregarEstudiantes(Set<String> nuevosEstudiantes, Map<String, Integer> nuevasCalificaciones) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'agregarEstudiantes'");
+        
+        // Compruebo que los estudiantes a introducir no existan ya
+        for (String nombreEstudianteAgregar : nuevosEstudiantes) {
+            if(estudiantes.containsKey(nombreEstudianteAgregar) == false ){
+                // Si no existe, la añade
+                estudiantes.put(nombreEstudianteAgregar, nuevasCalificaciones.get(nombreEstudianteAgregar));
+            }
+        }
     }
     
 }
