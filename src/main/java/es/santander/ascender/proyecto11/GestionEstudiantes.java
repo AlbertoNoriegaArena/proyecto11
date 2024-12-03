@@ -45,10 +45,11 @@ public class GestionEstudiantes implements IGestionEstudiantes {
     public Map<String, Integer> obtenerEstudiantesYCalificaciones() {
         
         // Devuelvo el mapa original
-        return this.getEstudiantes();
+        // return this.getEstudiantes();
 
-        // Si se quisiera pasar una copia para que no modifique el mapa original
-        // return new HashMap<>(this.getEstudiantes());
+        //Si se quisiera pasar una copia para que no modifique el mapa original
+        //Es mejor pasar una copia para que desde fuera no se pueda acceder al original
+        return new HashMap<>(this.getEstudiantes());
     }
 
     @Override
